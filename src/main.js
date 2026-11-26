@@ -67,7 +67,7 @@ $("#composer").addEventListener("submit", async (event) => {
   catch (error) { alert(error.message); }
   finally { send.disabled = !state.active; }
 });
-$("#attach-button").addEventListener("click", () => $("#media-input").click());
+$("#attach-button").addEventListener("click", () => $("#media-input").click());\n$("#media-input").addEventListener("change", async (event) => {\n  const file = event.target.files?.[0];\n  if (!file || !state.active) return;\n  const type = file.type.startsWith("image/") ? "image" : file.type.startsWith("audio/") ? "audio" : file.type.startsWith("video/") ? "video" : "document";\n  $("#connection-status").textContent = "Mengunggah media…";\n  try {\n    const uploaded = await api.uploadMedia(state.active.id, file, type);\n    await api.sendMedia(state.active.id, uploaded.data.id, type, file.name);\n    await openConversation(state.active.id);\n    $("#connection-status").textContent = "Terhubung";\n  } catch (error) { alert(error.message); $("#connection-status").textContent = error.message; }\n  finally { event.target.value = ""; }\n});\n
 loadConversations();
 subscribeToInbox(async () => { await loadConversations(); if (state.active) await openConversation(state.active.id); });
 setInterval(loadConversations, 30000);
