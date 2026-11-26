@@ -1,0 +1,1 @@
+COMMENT ON SCHEMA private IS 'WhatsApp Custom application schema. Public app access is served through the whatsapp-api Edge Function.';
