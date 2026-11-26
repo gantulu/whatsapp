@@ -170,7 +170,10 @@ Deno.serve(async (req: Request) => {
       const base = Deno.env.get("SUPABASE_URL") || "https://zyiavfljweavoxyyplxj.supabase.co";
       const link = `${base}/storage/v1/object/public/wa-media/${String(rows[0].storage_path).split("/").map(encodeURIComponent).join("/")}`;
       const media = { link, ...(b.caption ? { caption: String(b.caption) } : {}), ...(b.filename ? { filename: String(b.filename) } : {}) };
+      const draftMessageId = rows[0].message_id;
       const result = await send(String(b.conversation_id), String(b.type), { [String(b.type)]: media });
+      await db`update private.whatsapp_message_media set message_id=${result.message_id}::uuid where id=${String(b.media_id)}::uuid`;
+      if (draftMessageId !== result.message_id) await db`delete from private.whatsapp_messages where id=${draftMessageId}::uuid and internal_status='queued'`;
       return json({ success: true, ...result }, 201);
     }
     if (req.method === "POST" && path === "/media") {
