@@ -3,7 +3,7 @@
 ## Supabase
 
 Project: `zyiavfljweavoxyyplxj` (`ap-southeast-2`). Edge Functions:
-- `whatsapp-api` — public application API (`verify_jwt=false`)
+- `whatsapp-api` v3 — public application API (`verify_jwt=false`)
 - `whatsapp-webhook` — Meta callback (`verify_jwt=false`, verifies Meta handshake token)
 - `whatsapp-send-messages` — public compatibility proxy (`verify_jwt=false`)
 
