@@ -1,0 +1,2 @@
+CREATE INDEX IF NOT EXISTS whatsapp_messages_provider_status_idx ON private.whatsapp_messages(provider_status,updated_at DESC);
+COMMENT ON COLUMN private.whatsapp_messages.provider_status IS 'Latest provider delivery status from Meta WhatsApp Cloud API.';
