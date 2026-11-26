@@ -1,4 +1,5 @@
 import { api } from "./api.js";
+import { subscribeToInbox } from "./realtime.js";
 
 const $ = (selector) => document.querySelector(selector);
 const state = { conversations: [], active: null, messages: [] };
@@ -68,4 +69,5 @@ $("#composer").addEventListener("submit", async (event) => {
 });
 $("#attach-button").addEventListener("click", () => $("#media-input").click());
 loadConversations();
-setInterval(loadConversations, 15000);
+subscribeToInbox(async () => { await loadConversations(); if (state.active) await openConversation(state.active.id); });
+setInterval(loadConversations, 30000);
