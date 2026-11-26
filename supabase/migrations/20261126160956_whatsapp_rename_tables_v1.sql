@@ -1,0 +1,9 @@
+ALTER TABLE private.wa_accounts RENAME TO whatsapp_accounts;
+ALTER TABLE private.wa_contacts RENAME TO whatsapp_contacts;
+ALTER TABLE private.wa_contact_consents RENAME TO whatsapp_contact_consents;
+ALTER TABLE private.wa_conversations RENAME TO whatsapp_conversations;
+ALTER TABLE private.wa_api_keys RENAME TO whatsapp_api_keys;
+ALTER TABLE private.wa_messages RENAME TO whatsapp_messages;
+ALTER TABLE private.wa_templates RENAME TO whatsapp_templates;
+ALTER TABLE private.wa_webhook_events RENAME TO whatsapp_webhook_events;
+ALTER TABLE private.wa_message_media RENAME TO whatsapp_message_media;
