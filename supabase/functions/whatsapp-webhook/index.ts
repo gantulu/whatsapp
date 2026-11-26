@@ -56,6 +56,9 @@ async function claimEvent(key: string, type: string, payload: Record<string, unk
 async function markProcessed(id: string): Promise<void> {
   await db!.unsafe("UPDATE private.whatsapp_webhook_events SET processing_status='processed',processed_at=now(),error_code=NULL WHERE id=$1::uuid", [id]);
 }
+async function markUnsupported(id: string): Promise<void> {
+  await db!.unsafe("UPDATE private.whatsapp_webhook_events SET processing_status='unsupported',processed_at=now(),error_code=NULL WHERE id=$1::uuid", [id]);
+}
 async function markFailed(id: string, code: string): Promise<void> {
   await db!.unsafe("UPDATE private.whatsapp_webhook_events SET processing_status='failed',error_code=$2 WHERE id=$1::uuid AND processing_status<>'processed'", [id, code.slice(0, 120)]);
 }
@@ -168,7 +171,7 @@ async function handleChange(wabaId: string, change: Record<string, any>): Promis
     const field = String(change.field ?? "unknown");
     const key = await sha256("unsupported|" + wabaId + "|" + field + "|" + JSON.stringify(change));
     const eventId = await claimEvent(key, "unsupported:" + field, { waba_id: wabaId, field, change });
-    if (eventId) await markProcessed(eventId);
+    if (eventId) await markUnsupported(eventId);
     return;
   }
   const value = obj(change.value);
