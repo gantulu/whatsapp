@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a17">
+  <title>WhatsApp Custom Inbox</title>
+  <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="sidebar">
+      <header class="brand"><span class="brand-mark">W</span><div><strong>WhatsApp</strong><small>Custom Inbox</small></div></header>
+      <div class="sidebar-heading"><span>INBOX</span><button id="refresh-button" class="icon-button" aria-label="Refresh">↻</button></div>
+      <label class="search"><span>⌕</span><input id="search-input" placeholder="Cari percakapan..." autocomplete="off"></label>
+      <nav id="conversation-list" class="conversation-list" aria-label="Conversations"></nav>
+      <footer class="sidebar-footer"><span class="status-dot"></span><span id="connection-status">Connecting…</span></footer>
+    </aside>
+    <section class="chat-panel">
+      <header id="chat-header" class="chat-header"><div class="empty-avatar">W</div><div><strong>Pilih percakapan</strong><small>WhatsApp Cloud API</small></div></header>
+      <section id="message-list" class="message-list"><div class="welcome"><div class="welcome-icon">W</div><h1>WhatsApp Inbox</h1><p>Pilih percakapan untuk melihat pesan.</p></div></section>
+      <form id="composer" class="composer"><button type="button" id="attach-button" class="icon-button" aria-label="Attach media">＋</button><input id="message-input" placeholder="Ketik pesan..." autocomplete="off" disabled><button type="submit" id="send-button" disabled>Kirim</button><input id="media-input" type="file" hidden></form>
+    </section>
+    <aside class="details-panel"><div class="details-title">Detail kontak</div><div id="contact-details" class="contact-details"><p>Pilih percakapan untuk melihat detail kontak.</p></div></aside>
+  </main>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
