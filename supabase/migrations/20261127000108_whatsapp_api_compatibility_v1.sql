@@ -1,3 +1,0 @@
-COMMENT ON FUNCTION private.whatsapp_api_authenticate(text,bytea) IS 'Legacy API-key authentication retained for compatibility; not used by public app routes.';
-COMMENT ON FUNCTION private.whatsapp_api_prepare_text_send(uuid,text,text,text,text,text,text,text) IS 'Legacy send helper retained for compatibility; public app routes use whatsapp-api.';
-COMMENT ON FUNCTION private.whatsapp_api_finalize_text_send(uuid,text,text,text,text) IS 'Legacy outbound finalization helper retained for compatibility.';
