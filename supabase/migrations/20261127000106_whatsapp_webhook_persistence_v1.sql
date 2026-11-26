@@ -1,3 +1,0 @@
-CREATE INDEX IF NOT EXISTS whatsapp_messages_provider_message_uidx ON private.whatsapp_messages(provider_message_id) WHERE provider_message_id IS NOT NULL;
-CREATE INDEX IF NOT EXISTS whatsapp_messages_conversation_created_idx ON private.whatsapp_messages(conversation_id,created_at DESC);
-CREATE INDEX IF NOT EXISTS whatsapp_webhook_events_processing_idx ON private.whatsapp_webhook_events(processing_status,received_at);
